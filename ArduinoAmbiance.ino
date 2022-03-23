@@ -1,5 +1,6 @@
 #include <Adafruit_BME280.h>                        
 
+
 // Constantes du programme
 #define adresseI2CduBME280                0x76            // Adresse I2C du capteur
 #define pressionAuNiveauDeLaMerEnHpa      1024.90    
@@ -54,5 +55,4 @@ void loop() {
   // ... et on répète ce cycle à l'infini !
   delay(delaiRafraichissementAffichage);                // Avec x secondes d'attente, avant chaque rebouclage
   Serial.println();                                     // … et un saut de ligne pour faire joli ;)
-
 }
