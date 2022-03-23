@@ -9,6 +9,7 @@ const int colorR = 255;
 const int colorG = 0;
 const int colorB = 0;
 
+
 //Constante Capteur 
 
 #define adresseI2CduBME280                0x76            // Adresse I2C du capteur
@@ -16,6 +17,23 @@ const int colorB = 0;
 #define delaiRafraichissementAffichage    1500            // Délai de rafraîchissement de l'affichage (en millisecondes)
 
 Adafruit_BME280 bme;
+
+void setColorFromTemperature()
+{
+  float temp=bme.readTemperature();
+  if(temp<28)
+  {
+    lcd.setRGB(0,0,255);
+  }
+  else if(temp>27 && temp<31)
+  {
+    lcd.setRGB(0,255,0);
+  }
+  else
+  {
+    lcd.setRGB(255,0,0);
+  }
+}
 void setup() 
 {
   Serial.print(F("Initialisation du BME280, à l'adresse [0x"));
@@ -55,5 +73,6 @@ void loop()
     Serial.print(F("Température = "));
     Serial.print(bme.readTemperature());
     Serial.println(F(" °C"));
+    setColorFromTemperature();
 
 }
