@@ -21,7 +21,7 @@ Adafruit_BME280 bme;
 byte MAC[6] = { 0xA8, 0x61, 0x0A, 0xAE, 0x17, 0x0E }; // Adresse MAC du shield Ethernet
 String request; 
 //On affecte l'adresse IP du Shield Ethernet
-IPAddress IP(169,254,152, 92); // Adresse IP donné au Shield Ethernet
+IPAddress IP(169,254,0,1 ); // Adresse IP donné au Shield Ethernet
 
 // On attribue la fonction serveur au Shield Ethernet sur le port 80
 EthernetServer server(80); // Le Shield devient un serveur sur le port 80 (port HTTP)
