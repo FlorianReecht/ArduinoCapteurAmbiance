@@ -26,6 +26,24 @@ IPAddress IP(169,254,0,1 ); // Adresse IP donné au Shield Ethernet
 // On attribue la fonction serveur au Shield Ethernet sur le port 80
 EthernetServer server(80); // Le Shield devient un serveur sur le port 80 (port HTTP)
 EthernetClient client;
+void setColorFromTemperature()
+{
+  float temp=bme.readTemperature();
+  if(temp<28)
+  {
+    lcd.setRGB(0,0,255);
+  }
+  else if(temp>27 && temp<31)
+  {
+    lcd.setRGB(0,255,0);
+  }
+  else
+  {
+    lcd.setRGB(255,0,0);
+  }
+}
+
+
 void setup()
   {
 
@@ -83,6 +101,7 @@ void webpage(EthernetClient client) { /* function webpage */
  float t=bme.readTemperature();
 
  lcd.print(t);
+ setColorFromTemperature();
  client.println(F("HTTP/1.1 200 OK"));
  client.println(F("Content-Type: text/html"));
  client.println();

@@ -1,10 +1,11 @@
 #include <Wire.h>
 #include "rgb_lcd.h"
-#include <Adafruit_BME280.h>                        
+#include <Adafruit_BME280.h>   
+#include <SPI.h> // Libairie communication SPI avec le Shield éthernet
+#include <Ethernet.h> // Librairie communication Ethernet sur un réseau local
 
 //Constante écran 
 rgb_lcd lcd;
- 
 const int colorR = 255;
 const int colorG = 0;
 const int colorB = 0;
@@ -70,9 +71,9 @@ void loop()
     float t=bme.readTemperature();
     lcd.print(t); 
     delay(100);
+    setColorFromTemperature();
     Serial.print(F("Température = "));
     Serial.print(bme.readTemperature());
     Serial.println(F(" °C"));
-    setColorFromTemperature();
 
 }
